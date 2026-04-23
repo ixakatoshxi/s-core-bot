@@ -1,3 +1,10 @@
+// 🔥 Web Hack für Render (WICHTIG!)
+require('http').createServer((req, res) => {
+  res.writeHead(200);
+  res.end('S CORE BOT IS ONLINE 🔥');
+}).listen(process.env.PORT || 3000);
+
+// 🤖 Discord Bot
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
@@ -7,6 +14,11 @@ const client = new Client({
   ]
 });
 
+client.once('ready', () => {
+  console.log(`✅ Logged in as ${client.user.tag}`);
+});
+
+// 👑 Premium Welcome
 client.on('guildMemberAdd', member => {
   const channel = member.guild.channels.cache.find(c => c.name === "welcome");
   if (!channel) return;
