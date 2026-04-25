@@ -1,4 +1,3 @@
-bot.js
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
@@ -15,17 +14,23 @@ client.once('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-  const channel = member.guild.channels.cache.find(c => c.name === "welcome");
-  if (!channel) return;
+  console.log("JOIN DETECTED:", member.user.tag); // DEBUG
+
+  const channel = member.guild.channels.cache.get("DEINE_CHANNEL_ID");
+
+  if (!channel) {
+    console.log("Channel not found!");
+    return;
+  }
 
   const embed = new EmbedBuilder()
     .setColor("#d4af37")
     .setTitle("👑 Welcome to THE S TIER")
     .setDescription(`Welcome ${member} 🔥
 
-You just entered THE S TIER.
+You just entered **THE S TIER**.
 
-Stay active. Show your presence. Earn your place.
+Stay active, show your presence, and make your mark.
 
 Only the elite rise here.`)
     .setImage("https://i.imgur.com/gjqeMQN.png");
