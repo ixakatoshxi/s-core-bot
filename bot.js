@@ -39,3 +39,8 @@ Only the elite rise here.`)
 });
 
 client.login(TOKEN);
+
+require('http').createServer((req, res) => {
+  res.write("Bot is alive");
+  res.end();
+}).listen(3000);
